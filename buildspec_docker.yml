@@ -3,9 +3,6 @@ version: 0.2
 env:
   variables:
     IMAGE_TAG: "latest"  # Default value for the tag. Can be overridden.
-  exported-variables:
-    - IMAGE_DIGEST
-    - IMAGE_IDENTIFIER
 
 phases:
   install:
@@ -31,6 +28,8 @@ phases:
 
   post_build:
     commands:
-      - echo "Retrieving the image digest from ECR..."
-      - IMAGE_DIGEST=$(aws ecr describe-images --repository-name $repository_name --image-ids imageTag=$IMAGE_TAG --query 'imageDetails[0].imageDigest' --output text)
-      - IMAGE_IDENTIFIER="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${repository_name}@${IMAGE_DIGEST}"
+      - echo Writing image definitions file...
+      - printf '[{"name":"hotel-app","imageUri":"%s"}]' $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$repository_name:$IMAGE_TAG > imagedefinitions.json
+      
+artifacts:
+  files: imagedefinitions.json
