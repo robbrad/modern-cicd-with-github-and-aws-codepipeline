@@ -1,16 +1,16 @@
-Feature: AWS App Runner Hotel Web Application
+Feature: AWS Hotel Web Application
 
   As a user,
-  I want to navigate through the AWS App Runner Hotel web application
+  I want to navigate through the AWS Hotel web application
   So that I can view, add, and manage rooms.
 
   Background:
     Given I am on the homepage
 
   Scenario: Navigate to the homepage
-    Then I should see the page title "AWS App Runner Hotel"
+    Then I should see the page title "AWS Hotel"
     And I should see a navbar with "Home", "Rooms", and "Add" options
-    And I should see the heading "Welcome to AWS App Runner Hotel"
+    And I should see the heading "Welcome to AWS Hotel"
 
   Scenario: Navigate to the Rooms page
     When I click on "Rooms" in the navbar
