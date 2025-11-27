@@ -33,6 +33,3 @@ phases:
       
 artifacts:
   files: imagedefinitions.jsoncd /Workshop/modern-cicd-with-github-and-aws-codepipeline/
-git add .
-git commit -m "Add BuildSpec for pushing Docker image to ECR"
-git push
